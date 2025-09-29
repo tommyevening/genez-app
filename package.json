@@ -2,7 +2,7 @@
   "name": "genez-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://USERNAME.github.io/genez-app",
+  "homepage": "https://tommyevening.github.io/genez-app",
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.15",
