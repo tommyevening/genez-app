@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/genez-app/static/css/main.cb8e91f6.css",
-    "main.js": "/genez-app/static/js/main.a29834a5.js",
-    "static/js/453.21d715b3.chunk.js": "/genez-app/static/js/453.21d715b3.chunk.js",
+    "main.css": "/genez-app/static/css/main.a60fdbd1.css",
+    "main.js": "/genez-app/static/js/main.a88a629f.js",
     "index.html": "/genez-app/index.html",
-    "main.cb8e91f6.css.map": "/genez-app/static/css/main.cb8e91f6.css.map",
-    "main.a29834a5.js.map": "/genez-app/static/js/main.a29834a5.js.map",
-    "453.21d715b3.chunk.js.map": "/genez-app/static/js/453.21d715b3.chunk.js.map"
+    "main.a60fdbd1.css.map": "/genez-app/static/css/main.a60fdbd1.css.map",
+    "main.a88a629f.js.map": "/genez-app/static/js/main.a88a629f.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb8e91f6.css",
-    "static/js/main.a29834a5.js"
+    "static/css/main.a60fdbd1.css",
+    "static/js/main.a88a629f.js"
   ]
 }
