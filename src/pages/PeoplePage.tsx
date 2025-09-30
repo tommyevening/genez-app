@@ -48,7 +48,7 @@ const ActivityCard: React.FC<{ activity: Activity; index: number }> = ({ activit
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
       className="group"
     >
-      <Card className="overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:bg-white/90">
+      <Card className="overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:bg-white/90 h-full flex flex-col">
         <div className="relative overflow-hidden">
           <motion.img
             src={activity.photo}
@@ -82,7 +82,7 @@ const ActivityCard: React.FC<{ activity: Activity; index: number }> = ({ activit
           </div>
         </div>
 
-        <CardContent className="p-6">
+        <CardContent className="p-6 flex-1 flex flex-col">
           <div className="flex items-start justify-between mb-3">
             <CardTitle className="text-lg font-bold text-gray-900 line-clamp-1">
               {activity.activityName}
@@ -110,7 +110,7 @@ const ActivityCard: React.FC<{ activity: Activity; index: number }> = ({ activit
             </Badge>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 mt-auto">
             {/* Participants preview */}
             {activity.participants.length > 0 && (
               <div className="flex items-center gap-2">
