@@ -10,12 +10,14 @@ const Header: React.FC = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed w-full top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="fixed w-full top-0 z-50 border-b bg-white shadow-sm"
     >
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
+        {/* Logo */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          className="flex-shrink-0"
         >
           <Link
             to="/"
@@ -32,26 +34,29 @@ const Header: React.FC = () => {
           </Link>
         </motion.div>
 
-        <div className="flex items-center space-x-4">
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="hidden md:flex items-center space-x-2"
-          >
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="search"
-                placeholder="Szukaj aktywności..."
-                className={cn(
-                  "h-10 w-64 rounded-md border border-input bg-background pl-10 pr-3 text-sm",
-                  "placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                )}
-              />
-            </div>
-          </motion.div>
+        {/* Search Bar - Center */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="hidden md:block absolute left-1/2 transform -translate-x-1/2"
+        >
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <input
+              type="search"
+              placeholder="Szukaj aktywności..."
+              className={cn(
+                "h-10 w-96 rounded-md border border-input bg-background pl-10 pr-3 text-sm",
+                "placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+                "transition-all duration-200"
+              )}
+            />
+          </div>
+        </motion.div>
 
+        {/* Right Side - Add Button */}
+        <div className="flex items-center space-x-4">
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -60,8 +65,9 @@ const Header: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             className={cn(
               "inline-flex items-center justify-center rounded-md text-sm font-medium",
-              "h-10 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90",
-              "transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              "h-10 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md",
+              "hover:from-blue-700 hover:to-purple-700",
+              "transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             )}
           >
             <Plus className="mr-2 h-4 w-4" />
