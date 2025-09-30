@@ -5,15 +5,13 @@ import {
   Clock,
   Users,
   Heart,
-  Filter,
-  Plus,
   Zap,
   TrendingUp,
   Award,
   Calendar
 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
-import Sidebar, { FilterState } from '../components/Sidebar';
+import VerticalSidebar, { FilterState } from '../components/VerticalSidebar';
 import AddAnnouncementModal from '../components/AddAnnouncementModal';
 import { Card, CardContent, CardDescription, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -154,7 +152,7 @@ const ActivityCard: React.FC<{ activity: Activity; index: number }> = ({ activit
 };
 
 const PeoplePage: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
     location: '',
@@ -356,10 +354,13 @@ const PeoplePage: React.FC = () => {
 
   return (
     <>
-      <Sidebar
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
+      {/* Vertical Sidebar */}
+      <VerticalSidebar
+        onAddActivityClick={() => setIsModalOpen(true)}
+        filters={filters}
         onFiltersChange={handleFiltersChange}
+        isExpanded={isSidebarExpanded}
+        setIsExpanded={setIsSidebarExpanded}
       />
 
       <AddAnnouncementModal
@@ -369,7 +370,12 @@ const PeoplePage: React.FC = () => {
       />
 
       {/* Main Content */}
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div
+        className={cn(
+          "min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 transition-all duration-300",
+          isSidebarExpanded ? "ml-[360px]" : "ml-16"
+        )}
+      >
         {/* Hero Section */}
         <section className="pt-20 pb-16 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-cyan-600/10" />
@@ -427,27 +433,8 @@ const PeoplePage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8"
+              className="flex flex-col sm:flex-row justify-end items-start sm:items-center gap-4 mb-8"
             >
-              <div className="flex flex-wrap gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => setIsSidebarOpen(true)}
-                  className="flex items-center gap-2 hover:bg-blue-50 border-blue-200"
-                >
-                  <Filter className="w-4 h-4" />
-                  <span>Filtry</span>
-                </Button>
-
-                <Button
-                  onClick={() => setIsModalOpen(true)}
-                  className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>Dodaj aktywność</span>
-                </Button>
-              </div>
-
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -502,7 +489,12 @@ const PeoplePage: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              className={cn(
+                "grid gap-6 transition-all duration-300",
+                isSidebarExpanded
+                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              )}
             >
               {filteredActivities.map((activity, index) => (
                 <ActivityCard key={activity.id} activity={activity} index={index} />
